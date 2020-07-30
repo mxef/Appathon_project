@@ -8,12 +8,15 @@ Mια διαδικτυακή εφαρμογή που παίρνει ως input �
 
 ## Backend
 ### Installation:
+```bash
 npm install
 node index.js
-
+```
 ## Frontend
 ### Installation
+```bash
 npm install
 npm remove @vue/cli-plugin-eslint
 npm run build
 npm run serve
+```
