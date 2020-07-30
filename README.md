@@ -4,4 +4,16 @@ Mια διαδικτυακή εφαρμογή που παίρνει ως input �
 
 Θα χρησιμοποιηθούν το Node.js και το Express.
 
+Ξεφτέρης | Μιχάλης | 03114006
 
+## Backend
+### Installation:
+npm install
+node index.js
+
+## Frontend
+### Installation
+npm install
+npm remove @vue/cli-plugin-eslint
+npm run build
+npm run serve
