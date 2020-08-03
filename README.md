@@ -16,7 +16,6 @@ node index.js
 ### Installation
 ```bash
 npm install
-npm remove @vue/cli-plugin-eslint
 npm run build
 npm run serve
 ```
