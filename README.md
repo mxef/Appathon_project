@@ -9,6 +9,7 @@ Mια διαδικτυακή εφαρμογή που παίρνει ως input �
 ## Backend
 ### Installation:
 ```bash
+Προσθήκη του metadata.csv από την αντίστοιχη βάση (https://www.semanticscholar.org/cord19/download) στον φάκελο του backend.
 npm install
 node index.js
 ```
