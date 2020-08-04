@@ -3,9 +3,7 @@ const fs = require('fs');
 const parse = require('csv-parse');
 const cors = require('cors');
 
-
 //==============================================================================
-// TODO OPT: Better error messages (json?)?
 const paramName = 'medicine';
 
 const getBody = (req, res, next) => {
@@ -29,10 +27,8 @@ const getQuery = (req, res, next) => {
 };
 
 const getKeywords = getBody;
-// const getKeywords = getQuery;
 
 //==============================================================================
-// TODO OPT: Better error messages? json?
 const validateString = (req, res, next) => {
     if (typeof req.keywords !== "string") {
         res.status(400).end('keywords not a string\n');
@@ -59,7 +55,6 @@ const validateObject = (req, res, next) => {
 };
 
 const validate = validateObject;
-// const validate = [validateString, validateObject];
 
 //==============================================================================
 const metadataFile = './metadata.csv';
@@ -103,15 +98,13 @@ const process = (req, res, next) => {
     });
     parser.on('error', (err) => {
         next(err);
-    });
-    // TODO OPT: If too slow: Listen on readable instead of data?
-    // TODO OPT: If too slow: grep?
+    });    
 };
 //==============================================================================
 const port = 8000;
 
 const app = express();
-app.use(cors()); // Use this after the variable declaration
+app.use(cors());
 
 app.use(express.json());
 
