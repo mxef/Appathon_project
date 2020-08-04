@@ -3,10 +3,11 @@ const fs = require('fs');
 const parse = require('csv-parse');
 const cors = require('cors');
 
-//==============================================================================
 const paramName = 'medicine';
+const metadataFile = './metadata.csv';
+const port = 8000;
 
-const getBody = (req, res, next) => {
+const getKeywords = (req, res, next) => {
     if (!(paramName in req.body)) {
         res.status(400).send(`no ${paramName} in body\n`).end();
         return;
@@ -16,30 +17,7 @@ const getBody = (req, res, next) => {
     next();
 };
 
-const getQuery = (req, res, next) => {
-    if (!(paramName in req.query)) {
-        res.status(400).send(`no ${paramName} in query\n`).end();
-        return;
-    }
-
-    req.keywords = req.query[paramName];
-    next();
-};
-
-const getKeywords = getBody;
-
-//==============================================================================
-const validateString = (req, res, next) => {
-    if (typeof req.keywords !== "string") {
-        res.status(400).end('keywords not a string\n');
-        return;
-    }
-
-    req.keywords = req.keywords.split(',');
-    next();
-};
-
-const validateObject = (req, res, next) => {
+const validate = (req, res, next) => {
     if (!Array.isArray(req.keywords)){
         res.status(400).send('keywords not an array\n').end();  }
     else if (req.keywords.length > 10)
@@ -53,11 +31,6 @@ const validateObject = (req, res, next) => {
         next();
     }
 };
-
-const validate = validateObject;
-
-//==============================================================================
-const metadataFile = './metadata.csv';
 
 const process = (req, res, next) => {
     const fin = fs.createReadStream(metadataFile);
@@ -100,14 +73,13 @@ const process = (req, res, next) => {
         next(err);
     });    
 };
-//==============================================================================
-const port = 8000;
 
 const app = express();
-app.use(cors());
 
+app.use(cors());
 app.use(express.json());
 
 app.post('/', getKeywords, validate, process);
 
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
+

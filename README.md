@@ -11,12 +11,14 @@ Mια διαδικτυακή εφαρμογή που παίρνει ως input �
 ```bash
 Προσθήκη του metadata.csv από την αντίστοιχη βάση
 (https://www.semanticscholar.org/cord19/download) στον φάκελο του backend.
+cd backend
 npm install
-node index.js
+npm start
 ```
 ## Frontend
 ### Installation
 ```bash
+cd frontend
 npm install
 npm run build
 npm run serve
